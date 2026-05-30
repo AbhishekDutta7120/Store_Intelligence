@@ -13,7 +13,6 @@ RUN pip install --no-cache-dir \
     fastapi==0.115.5 \
     "uvicorn[standard]==0.32.1" \
     pydantic==2.9.2 \
-    sse-starlette==2.1.3
 
 # Copy application code
 COPY app/       ./app/
