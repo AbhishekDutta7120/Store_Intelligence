@@ -50,7 +50,7 @@ def get_anomalies(store_id: str):
         def conversion_rate(since):
             entries = conn.execute("""
                 SELECT COUNT(DISTINCT visitor_id) FROM events
-                WHERE store_id=? AND is_staff=0 AND event_type='ENTRY'
+                WHERE store_id=? AND is_staff=0 AND event_type IN ('ENTRY', 'REENTRY')
                   AND timestamp >= ?
             """, (store_id, since)).fetchone()[0]
             billing = conn.execute("""

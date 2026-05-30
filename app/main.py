@@ -13,6 +13,8 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse, FileResponse
 from fastapi.staticfiles import StaticFiles
 import os
+from prometheus_client import Counter, Histogram, generate_latest
+from fastapi.responses import PlainTextResponse
 
 from app.database import init_db
 from app.ingestion import router as ingestion_router
@@ -20,6 +22,10 @@ from app.metrics   import router as metrics_router
 from app.funnel    import router as funnel_router
 from app.anomalies import router as anomalies_router
 from app.health    import router as health_router
+
+# ── Prometheus setup ──────────────────────────────────────────────────────────
+REQUEST_COUNT = Counter("http_requests_total", "Total HTTP requests", ["method", "endpoint", "status_code"])
+REQUEST_LATENCY = Histogram("http_request_duration_seconds", "HTTP request latency", ["endpoint"])
 
 # ── Logging setup ─────────────────────────────────────────────────────────────
 logging.basicConfig(
@@ -80,6 +86,10 @@ async def log_requests(request: Request, call_next):
     if request.url.path == "/events/ingest" and request.method == "POST":
         event_count = "?"  # filled by ingestion handler
 
+    # Record prometheus metrics
+    REQUEST_COUNT.labels(method=request.method, endpoint=request.url.path, status_code=response.status_code).inc()
+    REQUEST_LATENCY.labels(endpoint=request.url.path).observe(latency / 1000.0)
+
     logger.info(json.dumps({
         "trace_id":    trace_id,
         "store_id":    store_id,
@@ -118,6 +128,10 @@ app.include_router(metrics_router)
 app.include_router(funnel_router)
 app.include_router(anomalies_router)
 app.include_router(health_router)
+
+@app.get("/metrics/system", response_class=PlainTextResponse)
+def get_prometheus_metrics():
+    return generate_latest()
 
 
 # ── Dashboard static files ────────────────────────────────────────────────────
