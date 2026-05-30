@@ -128,4 +128,4 @@ class StoreHealth(BaseModel):
 class HealthResponse(BaseModel):
     status:  str
     stores:  list[StoreHealth]
-    version: str = "0.1.0"
+    version: str = "1.0.0"

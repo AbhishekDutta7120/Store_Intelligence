@@ -45,7 +45,7 @@ async def lifespan(app: FastAPI):
 
 app = FastAPI(
     title       = "Store Intelligence API",
-    version     = "0.1.0",
+    version     = "1.0.0",
     description = "Apex Retail offline store analytics",
     lifespan    = lifespan,
 )
