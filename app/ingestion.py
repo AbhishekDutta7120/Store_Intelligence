@@ -62,14 +62,14 @@ def _insert_event(conn, event: Event, ingested_at: str):
             INSERT INTO events
               (event_id, store_id, camera_id, visitor_id, event_type,
                timestamp, zone_id, dwell_ms, is_staff, confidence,
-               queue_depth, sku_zone, session_seq, ingested_at)
-            VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+               queue_depth, sku_zone, session_seq, group_id, ingested_at)
+            VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
         """, (
             event.event_id, event.store_id, event.camera_id, event.visitor_id,
             event.event_type, event.timestamp, event.zone_id, event.dwell_ms,
             int(event.is_staff), event.confidence,
             event.metadata.queue_depth, event.metadata.sku_zone,
-            event.metadata.session_seq, ingested_at,
+            event.metadata.session_seq, event.metadata.group_id, ingested_at,
         ))
     except Exception as e:
         if "UNIQUE constraint failed" in str(e):

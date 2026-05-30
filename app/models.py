@@ -16,6 +16,7 @@ class EventMetadata(BaseModel):
     queue_depth: Optional[int] = None
     sku_zone:    Optional[str] = None
     session_seq: int = 0
+    group_id:    Optional[str] = None
 
 
 class Event(BaseModel):
