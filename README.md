@@ -82,7 +82,6 @@ python -m pipeline.detect \
 ### Output
 Events are written to `data/events.jsonl` — one JSON object per line. If `--api-url` is set, events are also POSTed in batches of 50 to the API as they are generated.
 
-
 ---
 
 ## Running Tests
@@ -154,13 +153,13 @@ It refreshes automatically every 3 seconds as events flow in from the detection 
 
 ## Camera Mapping
 
-| File | Camera ID | Type | Store |
+| File | Camera ID | Type | Zone |
 |---|---|---|---|
-| CAM 1.mp4 | CAM_1 | Entry/Exit | ST1008 — Brigade_Bangalore |
-| CAM 2.mp4 | CAM_2 | Skincare + Accessories | ST1008 — Brigade_Bangalore |
-| CAM 3.mp4 | CAM_3 | Main Floor (FOH + Fragrance) | ST1008 — Brigade_Bangalore |
-| CAM 4.mp4 | CAM_4 | Makeup + Bottom Brands | ST1008 — Brigade_Bangalore |
-| CAM 5.mp4 | CAM_5 | Billing (Cash Counter + PMU) | ST1008 — Brigade_Bangalore |
+| CAM 1.mp4 | CAM_1 | Floor | Skincare shelf — FarmStay, The Face Shop, Good Vibes, DermaCo |
+| CAM 2.mp4 | CAM_2 | Floor | Makeup + Brands — Alps, Swiss Beauty, Lakme, Faces Canada, Maybelline |
+| CAM 3.mp4 | CAM_3 | Entry/Exit | Main entrance/exit threshold |
+| CAM 4.mp4 | CAM_4 | Stockroom | Back room — excluded from customer metrics |
+| CAM 5.mp4 | CAM_5 | Billing | Cash counter |
 
 ---
 
