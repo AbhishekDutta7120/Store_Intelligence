@@ -1,4 +1,5 @@
 @echo off
+setlocal enabledelayedexpansion
 REM run.bat — Run detection pipeline on all CAM videos
 REM Usage: pipeline\run.bat [optional: path to videos folder]
 REM Output: data\events.jsonl
