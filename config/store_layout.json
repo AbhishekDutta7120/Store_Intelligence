@@ -1,0 +1,101 @@
+{
+  "stores": [
+    {
+      "store_id": "ST1008",
+      "name": "Brigade_Bangalore",
+      "city": "Bangalore",
+      "address": "Brigade Road, Bangalore",
+      "open_hours": { "open": "11:00", "close": "22:00" },
+      "cameras": [
+        { "camera_id": "CAM_1", "type": "entry_exit",  "description": "Main entrance glass door - left side" },
+        { "camera_id": "CAM_2", "type": "floor",       "description": "Skincare top shelf + Accessories" },
+        { "camera_id": "CAM_3", "type": "floor",       "description": "Main floor FOH + Fragrance + Nail Counter" },
+        { "camera_id": "CAM_4", "type": "floor",       "description": "Makeup unit + Bottom brands" },
+        { "camera_id": "CAM_5", "type": "billing",     "description": "Cash Counter billing area + PMU" }
+      ],
+      "zones": [
+        {
+          "zone_id": "ENTRY",
+          "camera_id": "CAM_1",
+          "bbox": [0, 0.5, 1, 1.0],
+          "sku_zone": null,
+          "description": "Store entrance threshold"
+        },
+        {
+          "zone_id": "SKINCARE",
+          "camera_id": "CAM_2",
+          "bbox": [0, 0, 0.75, 0.5],
+          "sku_zone": "SKINCARE",
+          "description": "Top shelf: EB Korean, The Face Shop, Good Vibes, DermDoc, Minimalist, Aqualogica, Lakme Skin"
+        },
+        {
+          "zone_id": "ACCESSORIES",
+          "camera_id": "CAM_2",
+          "bbox": [0.75, 0, 1.0, 0.5],
+          "sku_zone": "ACCESSORIES",
+          "description": "Accessories shelf - top right"
+        },
+        {
+          "zone_id": "FRAGRANCE",
+          "camera_id": "CAM_3",
+          "bbox": [0, 0, 0.25, 1.0],
+          "sku_zone": "FRAGRANCE",
+          "description": "Fragrance + Nail Unit - left center"
+        },
+        {
+          "zone_id": "FOH",
+          "camera_id": "CAM_3",
+          "bbox": [0.25, 0.2, 0.75, 0.8],
+          "sku_zone": null,
+          "description": "Front of House - main open floor area"
+        },
+        {
+          "zone_id": "MAKEUP",
+          "camera_id": "CAM_4",
+          "bbox": [0, 0, 0.6, 0.5],
+          "sku_zone": "MAKEUP",
+          "description": "Makeup unit - center: Colorbar, Sugar, Swiss Beauty, NY Bae"
+        },
+        {
+          "zone_id": "BOTTOM_BRANDS",
+          "camera_id": "CAM_4",
+          "bbox": [0, 0.5, 1.0, 1.0],
+          "sku_zone": "BOTTOM_BRANDS",
+          "description": "Bottom shelf: Maybelline, Faces Canada, Lakme, Alps Goodness, Streax"
+        },
+        {
+          "zone_id": "BILLING",
+          "camera_id": "CAM_5",
+          "bbox": [0, 0, 0.7, 1.0],
+          "sku_zone": null,
+          "description": "Cash Counter - billing area"
+        },
+        {
+          "zone_id": "PMU",
+          "camera_id": "CAM_5",
+          "bbox": [0.7, 0.4, 1.0, 1.0],
+          "sku_zone": "PMU",
+          "description": "Permanent Makeup Unit - bottom right"
+        }
+      ]
+    },
+    {
+      "store_id": "STORE_BLR_002",
+      "name": "Apex Retail Bangalore South",
+      "city": "Bangalore",
+      "open_hours": { "open": "10:00", "close": "22:00" },
+      "cameras": [
+        { "camera_id": "CAM_3", "type": "entry_exit", "description": "Main entrance threshold" },
+        { "camera_id": "CAM_4", "type": "floor",      "description": "Main floor zone coverage" },
+        { "camera_id": "CAM_5", "type": "billing",    "description": "Billing counter area" }
+      ],
+      "zones": [
+        { "zone_id": "ENTRY",    "camera_id": "CAM_3", "bbox": [0, 0.6, 1, 1.0], "sku_zone": null },
+        { "zone_id": "MAKEUP",   "camera_id": "CAM_4", "bbox": [0, 0, 0.5, 0.5], "sku_zone": "FOUNDATION" },
+        { "zone_id": "SKINCARE", "camera_id": "CAM_4", "bbox": [0.5, 0, 1, 0.5], "sku_zone": "MOISTURISER" },
+        { "zone_id": "HAIRCARE", "camera_id": "CAM_4", "bbox": [0, 0.5, 0.5, 1], "sku_zone": "SHAMPOO" },
+        { "zone_id": "BILLING",  "camera_id": "CAM_5", "bbox": [0, 0, 1, 1.0],   "sku_zone": null }
+      ]
+    }
+  ]
+}
