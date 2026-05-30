@@ -75,7 +75,6 @@ def process_video(video_path: Path, camera_id: str, cam_config: dict,
 
     from pipeline.tracker import TrackerState, DWELL_EMIT_INTERVAL
     from pipeline.emit import make_event
-    from pipeline.grouping import GroupManager
 
     store_id  = cam_config["store_id"]
     cam_type  = cam_config["cam_type"]
@@ -95,7 +94,6 @@ def process_video(video_path: Path, camera_id: str, cam_config: dict,
 
     model   = YOLO("yolov8n.pt")
     state   = TrackerState(store_id, camera_id, clip_duration)
-    group_manager = GroupManager()
 
     # Track last known centroids for direction detection
     prev_cy: dict[int, float] = {}   # track_id → previous normalised cy
@@ -165,7 +163,6 @@ def process_video(video_path: Path, camera_id: str, cam_config: dict,
                         # Determine entry direction from position: if cy_norm > ENTRY_LINE_RATIO
                         # person appeared below line → entering store
                         event_type = "REENTRY" if is_reentry else "ENTRY"
-                        group_id = group_manager.process_entry(track.visitor_id, now, cx_norm, cy_norm)
                         writer.write(make_event(
                             store_id   = store_id,
                             camera_id  = camera_id,
@@ -177,7 +174,6 @@ def process_video(video_path: Path, camera_id: str, cam_config: dict,
                             is_staff   = track.is_staff,
                             confidence = conf,
                             session_seq= track.next_seq(),
-                            group_id   = group_id,
                         ))
 
                     # Track direction for exit detection
@@ -309,7 +305,6 @@ def process_video(video_path: Path, camera_id: str, cam_config: dict,
     cap.release()
     state.finalise_staff()
     print(f"[INFO] Done: {video_path.name}")
-    return state
 
 
 def _estimate_queue_depth(active_ids: set, state) -> int:
@@ -367,8 +362,8 @@ def main():
             for row in csv.DictReader(f):
                 pos_lookup.setdefault(row["store_id"], []).append(row)
 
-    from pipeline.buffered_writer import BufferedEventWriter
-    writer = BufferedEventWriter(args.output, args.api_url)
+    from pipeline.emit import EventWriter
+    writer = EventWriter(args.output, args.api_url)
 
     for video_str in args.videos:
         video_path = Path(video_str)
@@ -376,9 +371,7 @@ def main():
         if camera_id not in cam_map:
             print(f"[ERROR] camera_id '{camera_id}' not in layout. Skipping.")
             continue
-        state = process_video(video_path, camera_id, cam_map[camera_id], writer, pos_lookup)
-        if state:
-            writer.flush_all(state)
+        process_video(video_path, camera_id, cam_map[camera_id], writer, pos_lookup)
 
     writer.close()
     print(f"[DONE] Events written to {args.output}")

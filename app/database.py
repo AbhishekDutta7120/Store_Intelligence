@@ -26,7 +26,6 @@ def init_db():
             queue_depth  INTEGER,
             sku_zone     TEXT,
             session_seq  INTEGER,
-            group_id     TEXT,
             ingested_at  TEXT NOT NULL
         );
         CREATE INDEX IF NOT EXISTS idx_events_store_ts

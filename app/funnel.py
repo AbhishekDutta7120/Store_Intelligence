@@ -21,7 +21,7 @@ def get_funnel(store_id: str):
         entries = conn.execute("""
             SELECT COUNT(DISTINCT visitor_id) as cnt FROM events
             WHERE store_id=? AND is_staff=0
-              AND event_type IN ('ENTRY', 'REENTRY') AND timestamp >= ?
+              AND event_type='ENTRY' AND timestamp >= ?
         """, (store_id, since)).fetchone()["cnt"]
 
         # Visited at least one zone (ZONE_ENTER or ZONE_DWELL)

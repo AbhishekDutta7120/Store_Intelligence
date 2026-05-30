@@ -86,11 +86,6 @@ This avoids heavy Re-ID models (OSNet, torchreid) that require CUDA. The trade-o
 ### Staff detection
 
 After each clip, any track continuously visible for >65% of clip duration is flagged is_staff=true. This catches staff members who are present throughout their shift while reliably excluding customers (typical dwell: 5–20 minutes on an 8-minute clip).
-*Fix update:* The pipeline buffers events during clip processing and updates the `is_staff` flag accurately *after* calculating durations, ensuring staff entries are correctly marked before flushing to the API.
-
-### Group Entry Handling
-
-A spatial-temporal clustering logic was added in the pipeline (`GroupManager`). When multiple people enter the store simultaneously (within a 3.0 second window and a proximity distance threshold), they are assigned the same `group_id`. This `group_id` is propagated through `EventMetadata` to the backend, enabling the analysis of shopping groups (e.g., distinguishing a 3-person family from 3 independent conversion opportunities).
 
 ### Entry/exit counting
 
@@ -120,10 +115,6 @@ Three indexes cover the three main access patterns:
 ### Session deduplication
 
 All funnel and metrics endpoints use `COUNT(DISTINCT visitor_id)`. Since the Re-ID system reuses visitor_id on re-entry, a customer who leaves and returns is counted once — not twice.
-
-### Observability
-
-The API exposes Prometheus metrics at `/metrics/system` (via `prometheus-client`). It tracks `http_requests_total` and `http_request_duration_seconds`. This complements the structured JSON application logs (`logger.info`), enabling comprehensive production monitoring.
 
 ### Anomaly detection
 

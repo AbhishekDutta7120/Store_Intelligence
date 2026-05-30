@@ -27,7 +27,6 @@ def make_event(
     queue_depth: Optional[int] = None,
     sku_zone: Optional[str] = None,
     session_seq: int = 0,
-    group_id: Optional[str] = None,
 ) -> dict:
     """Build a fully-validated event dict matching the required schema."""
     assert event_type in VALID_EVENT_TYPES, f"Unknown event type: {event_type}"
@@ -46,7 +45,6 @@ def make_event(
             "queue_depth": queue_depth,
             "sku_zone": sku_zone,
             "session_seq": session_seq,
-            "group_id": group_id,
         },
     }
 

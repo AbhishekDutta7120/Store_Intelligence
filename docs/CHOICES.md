@@ -44,8 +44,7 @@ Claude suggested Option C unprompted, citing the "event sourcing pattern" and no
 
 Option C, because it directly maps to the required event schema (flat by design), supports idempotency with a single UNIQUE constraint, and allows `COUNT(DISTINCT visitor_id)` session deduplication without JOINs.
 
-The specific metadata fields were shaped by the real Brigade Road data: `sku_zone` maps to actual brand zones in the store, and `queue_depth` applies to BILLING.
-Additionally, I introduced `group_id` to handle group entries seamlessly without complex relational tables, successfully meeting the problem requirement to identify group entries.
+The specific metadata fields were shaped by the real Brigade Road data: `sku_zone` maps to actual brand zones in the store (SKINCARE → EB Korean/The Face Shop/DermDoc tier; MAKEUP → Colorbar/Sugar/NY Bae tier), enabling future brand-level dwell attribution. `queue_depth` is populated only for BILLING and BILLING_QUEUE_JOIN events, keeping the field sparse but meaningful.
 
 ---
 

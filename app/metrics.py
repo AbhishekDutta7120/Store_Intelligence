@@ -30,7 +30,7 @@ def get_metrics(store_id: str):
         unique_visitors = conn.execute("""
             SELECT COUNT(DISTINCT visitor_id) as cnt
             FROM events
-            WHERE store_id=? AND is_staff=0 AND event_type IN ('ENTRY', 'REENTRY')
+            WHERE store_id=? AND is_staff=0 AND event_type='ENTRY'
               AND timestamp >= ?
         """, (store_id, since)).fetchone()["cnt"]
 

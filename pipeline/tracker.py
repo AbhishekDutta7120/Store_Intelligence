@@ -128,8 +128,6 @@ class TrackerState:
         self.active: dict[int, VisitorTrack] = {}   # track_id → track
         self.reid_cache        = ReIDCache()
         self._uid_counter      = 0
-        self.visitor_durations = defaultdict(float)
-        self.staff_visitor_ids = set()
 
     def _new_visitor_id(self) -> str:
         self._uid_counter += 1
@@ -174,22 +172,13 @@ class TrackerState:
             t.exited    = True
             t.exit_time = exit_time
             self.reid_cache.add_exit(t, exit_time)
-            duration = (t.last_seen - t.entry_time).total_seconds()
-            self.visitor_durations[t.visitor_id] += duration
 
     def finalise_staff(self):
         """After clip ends, flag tracks active for >65% of clip as staff."""
         for t in self.active.values():
             duration = (t.last_seen - t.entry_time).total_seconds()
-            self.visitor_durations[t.visitor_id] += duration
-
-        for vid, dur in self.visitor_durations.items():
-            if dur > self.clip_duration_sec * STAFF_DWELL_RATIO:
-                self.staff_visitor_ids.add(vid)
-                # update active tracks just in case
-                for t in self.active.values():
-                    if t.visitor_id == vid:
-                        t.is_staff = True
+            if duration > self.clip_duration_sec * STAFF_DWELL_RATIO:
+                t.is_staff = True
 
     def get_zone_dwell_due(self, track: VisitorTrack,
                            now: datetime) -> Optional[int]:
