@@ -139,6 +139,7 @@ store-intelligence/
 ## Live Dashboard (Part E)
 
 Live dashboard link:- https://store-intelligence-jsyb.onrender.com/
+
 The dashboard shows:
 - Unique visitor count (live)
 - Conversion rate
