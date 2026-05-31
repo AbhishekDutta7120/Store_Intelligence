@@ -13,9 +13,8 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse, FileResponse
 from fastapi.staticfiles import StaticFiles
 import os
-from prometheus_client import Counter, Histogram, generate_latest
+from 
 from fastapi.responses import PlainTextResponse
-
 from app.database import init_db
 from app.ingestion import router as ingestion_router
 from app.metrics   import router as metrics_router
