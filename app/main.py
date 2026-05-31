@@ -13,7 +13,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse, FileResponse
 from fastapi.staticfiles import StaticFiles
 import os
-from fastapi.responses import PlainTextResponse
+
 from app.database import init_db
 from app.ingestion import router as ingestion_router
 from app.metrics   import router as metrics_router
@@ -80,10 +80,6 @@ async def log_requests(request: Request, call_next):
     if request.url.path == "/events/ingest" and request.method == "POST":
         event_count = "?"  # filled by ingestion handler
 
-    # Record prometheus metrics
-    REQUEST_COUNT.labels(method=request.method, endpoint=request.url.path, status_code=response.status_code).inc()
-    REQUEST_LATENCY.labels(endpoint=request.url.path).observe(latency / 1000.0)
-
     logger.info(json.dumps({
         "trace_id":    trace_id,
         "store_id":    store_id,
@@ -122,10 +118,6 @@ app.include_router(metrics_router)
 app.include_router(funnel_router)
 app.include_router(anomalies_router)
 app.include_router(health_router)
-
-@app.get("/metrics/system", response_class=PlainTextResponse)
-def get_prometheus_metrics():
-    return generate_latest()
 
 
 # ── Dashboard static files ────────────────────────────────────────────────────
