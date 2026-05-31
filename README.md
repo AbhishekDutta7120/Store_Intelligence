@@ -138,7 +138,8 @@ store-intelligence/
 
 ## Live Dashboard (Part E)
 
-The dashboard at `http://localhost:8000` shows:
+Live dashboard link:- https://store-intelligence-jsyb.onrender.com/
+The dashboard shows:
 - Unique visitor count (live)
 - Conversion rate
 - Queue depth at billing
