@@ -21,10 +21,6 @@ from app.funnel    import router as funnel_router
 from app.anomalies import router as anomalies_router
 from app.health    import router as health_router
 
-# ── Prometheus setup ──────────────────────────────────────────────────────────
-REQUEST_COUNT = Counter("http_requests_total", "Total HTTP requests", ["method", "endpoint", "status_code"])
-REQUEST_LATENCY = Histogram("http_request_duration_seconds", "HTTP request latency", ["endpoint"])
-
 # ── Logging setup ─────────────────────────────────────────────────────────────
 logging.basicConfig(
     level  = logging.INFO,
