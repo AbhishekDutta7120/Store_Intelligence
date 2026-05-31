@@ -39,7 +39,7 @@ CCTV Videos (CAM_1..5)       Brigade Road, Bangalore (ST1008)
              │ polls every 3s
              ▼
 ┌─────────────────────────────┐
-│  Live Dashboard (HTML/JS)   │  Served at http://localhost:8000
+│  Live Dashboard (HTML/JS)   │  Served at https://store-intelligence-jsyb.onrender.com/
 └─────────────────────────────┘
 ```
 
@@ -51,15 +51,14 @@ The store layout (Brigade_Road_Store_layout.xlsx) defines a single-floor beauty 
 
 | Zone | Camera | Description |
 |---|---|---|
-| ENTRY | CAM_1 | Entrance glass door — entry/exit threshold |
-| SKINCARE | CAM_2 | Top shelf: EB Korean, The Face Shop, Good Vibes, DermDoc, Minimalist, Aqualogica, Lakme Skin |
-| ACCESSORIES | CAM_2 | Top right shelf |
-| FRAGRANCE | CAM_3 | Left center: Fragrance + Nail Unit |
-| FOH | CAM_3 | Front of House — main open floor area |
-| MAKEUP | CAM_4 | Center makeup unit: Colorbar, Sugar, Swiss Beauty, NY Bae |
-| BOTTOM_BRANDS | CAM_4 | Bottom shelf: Maybelline, Faces Canada, Lakme, Alps Goodness, Streax |
-| BILLING | CAM_5 | Cash Counter area |
-| PMU | CAM_5 | Permanent Makeup Unit — bottom right |
+| ENTRY | CAM_3 | Main entrance/exit — glass door threshold |
+| SKINCARE | CAM_1 | Skincare shelf — FarmStay, The Face Shop, Good Vibes, DermaCo, Minimalist, Aqualogica |
+| PMU | CAM_1 | Permanent Makeup Unit — vanity station right side |
+| MAKEUP | CAM_2 | Makeup brands — Swiss Beauty, Lakme, Faces Canada, Maybelline |
+| HAIRCARE | CAM_2 | Hair care — Alps, L'Oreal |
+| ACCESSORIES | CAM_2 | Accessories — top left of makeup floor |
+| BILLING | CAM_5 | Cash counter — billing area |
+| STOCKROOM | CAM_4 | Back room — excluded from customer metrics |
 
 ---
 
@@ -87,10 +86,6 @@ This avoids heavy Re-ID models (OSNet, torchreid) that require CUDA. The trade-o
 
 After each clip, any track continuously visible for >65% of clip duration is flagged is_staff=true. This catches staff members who are present throughout their shift while reliably excluding customers (typical dwell: 5–20 minutes on an 8-minute clip).
 *Fix update:* The pipeline buffers events during clip processing and updates the `is_staff` flag accurately *after* calculating durations, ensuring staff entries are correctly marked before flushing to the API.
-
-### Group Entry Handling
-
-A spatial-temporal clustering logic was added in the pipeline (`GroupManager`). When multiple people enter the store simultaneously (within a 3.0 second window and a proximity distance threshold), they are assigned the same `group_id`. This `group_id` is propagated through `EventMetadata` to the backend, enabling the analysis of shopping groups (e.g., distinguishing a 3-person family from 3 independent conversion opportunities).
 
 ### Entry/exit counting
 
@@ -122,8 +117,7 @@ Three indexes cover the three main access patterns:
 All funnel and metrics endpoints use `COUNT(DISTINCT visitor_id)`. Since the Re-ID system reuses visitor_id on re-entry, a customer who leaves and returns is counted once — not twice.
 
 ### Observability
-
-The API exposes Prometheus metrics at `/metrics/system` (via `prometheus-client`). It tracks `http_requests_total` and `http_request_duration_seconds`. This complements the structured JSON application logs (`logger.info`), enabling comprehensive production monitoring.
+Structured JSON logs are emitted for every request including trace_id, store_id, endpoint, latency_ms, and status_code — sufficient for production debugging and monitoring.
 
 ### Anomaly detection
 
