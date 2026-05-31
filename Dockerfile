@@ -12,7 +12,7 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir \
     fastapi==0.115.5 \
     "uvicorn[standard]==0.32.1" \
-    pydantic==2.9.2 \
+    pydantic==2.9.2
 
 # Copy application code
 COPY app/       ./app/
