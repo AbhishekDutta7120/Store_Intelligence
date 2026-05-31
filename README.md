@@ -19,6 +19,8 @@ python -m pipeline.detect --videos "CAM 1.mp4" "CAM 2.mp4" "CAM 3.mp4" "CAM 4.mp
 
 # 5. Open the live dashboard
 start http://localhost:8000
+# Or visit the live deployment:
+https://store-intelligence-jsyb.onrender.com/
 ```
 
 > **Windows users:** Use `pipeline\run.bat <path-to-videos>` for a one-command pipeline run.
@@ -124,8 +126,6 @@ store-intelligence/
 │   └── test_anomalies.py
 ├── config/
 │   └── store_layout.json
-├── data/
-│   └── pos_transactions.csv
 ├── docs/
 │   ├── DESIGN.md
 │   └── CHOICES.md
