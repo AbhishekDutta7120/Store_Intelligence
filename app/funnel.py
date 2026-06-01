@@ -8,7 +8,7 @@ from app.models import FunnelResponse, FunnelStage, HeatmapResponse, HeatmapZone
 from app.database import get_conn
 
 router = APIRouter()
-WINDOW_HOURS = 24
+WINDOW_HOURS = 8760
 
 
 @router.get("/stores/{store_id}/funnel", response_model=FunnelResponse)
