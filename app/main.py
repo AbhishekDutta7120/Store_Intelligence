@@ -15,6 +15,7 @@ from fastapi.staticfiles import StaticFiles
 import os
 
 from app.database import init_db
+from app.seed import seed_db
 from app.ingestion import router as ingestion_router
 from app.metrics   import router as metrics_router
 from app.funnel    import router as funnel_router
@@ -32,6 +33,7 @@ logger = logging.getLogger("store_intelligence")
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     init_db()
+    seed_db()
     logger.info(json.dumps({"event": "startup", "message": "Store Intelligence API ready"}))
     yield
     logger.info(json.dumps({"event": "shutdown"}))
