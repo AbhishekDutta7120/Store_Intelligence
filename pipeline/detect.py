@@ -157,11 +157,11 @@ def process_video(video_path: Path, camera_id: str, cam_config: dict,
                     tid, conf, frame, orig_box, now
                 )
 
-        # ── Skip stockroom cameras entirely for customer metrics ───────────
-        if cam_type == "stockroom":
-            continue
+                # ── Skip stockroom cameras entirely for customer metrics ──────
+                if cam_type == "stockroom":
+                    continue
 
-        # ── Entry/Exit detection (entry_exit cameras only) ──────────
+                # ── Entry/Exit detection (entry_exit cameras only) ──────────
                 if cam_type == "entry_exit":
                     if is_new:
                         # Determine entry direction from position: if cy_norm > ENTRY_LINE_RATIO
