@@ -8,7 +8,7 @@ from app.models import StoreMetrics, ZoneDwell
 from app.database import get_conn
 
 router = APIRouter()
-WINDOW_HOURS = 24
+WINDOW_HOURS = 8760
 
 
 @router.get("/stores/{store_id}/metrics", response_model=StoreMetrics)
