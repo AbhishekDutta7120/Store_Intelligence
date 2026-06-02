@@ -6,7 +6,7 @@ Real-time offline store analytics from raw CCTV footage.
 
 ```bash
 # 1. Clone and enter the repo
-git clone <your-repo-url> store-intelligence && cd store-intelligence
+git clone <https://github.com/AbhishekDutta7120/Store_Intelligence> store-intelligence && cd store-intelligence
 
 # 2. Install Python dependencies (detection pipeline)
 pip install -r requirements.txt
