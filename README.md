@@ -15,7 +15,7 @@ pip install -r requirements.txt
 docker compose up --build -d
 
 # 4. Run the detection pipeline on your video clips
-python -m pipeline.detect --videos "CAM 1.mp4" "CAM 2.mp4" "CAM 3.mp4" "CAM 4.mp4" "CAM 5.mp4" --layout config/store_layout.json --output data/events.jsonl --api-url http://localhost:8000/events/ingest
+python -m pipeline.detect --videos "CAM 1.mp4" "CAM 2.mp4" "CAM 3.mp4" "CAM 4.mp4" "CAM 5.mp4" --layout config/store_layout.json --output data/events.jsonl --api-url https://store-intelligence-jsyb.onrender.com/events/ingest
 
 # 5. Open the live dashboard
 https://store-intelligence-jsyb.onrender.com/
