@@ -18,8 +18,6 @@ docker compose up --build -d
 python -m pipeline.detect --videos "CAM 1.mp4" "CAM 2.mp4" "CAM 3.mp4" "CAM 4.mp4" "CAM 5.mp4" --layout config/store_layout.json --output data/events.jsonl --api-url http://localhost:8000/events/ingest
 
 # 5. Open the live dashboard
-start http://localhost:8000
-# Or visit the live deployment:
 https://store-intelligence-jsyb.onrender.com/
 ```
 
