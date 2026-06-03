@@ -19,6 +19,7 @@ python -m pipeline.detect --videos "CAM 1.mp4" "CAM 2.mp4" "CAM 3.mp4" "CAM 4.mp
 
 # 5. Open the live dashboard
 https://store-intelligence-jsyb.onrender.com/
+Click on ST1008
 ```
 
 > **Windows users:** Use `pipeline\run.bat <path-to-videos>` for a one-command pipeline run.
