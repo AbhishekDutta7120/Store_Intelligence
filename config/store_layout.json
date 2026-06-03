@@ -7,75 +7,40 @@
       "address": "Brigade Road, Bangalore",
       "open_hours": { "open": "11:00", "close": "22:00" },
       "cameras": [
-        {
-          "camera_id": "CAM_1",
-          "type": "floor",
-          "description": "Skincare shelf — FarmStay, The Face Shop, Good Vibes, DermaCo, Minimalist, Aqualogica"
-        },
-        {
-          "camera_id": "CAM_2",
-          "type": "floor",
-          "description": "Makeup + Bottom brands — Alps, Swiss Beauty, Lakme, Faces Canada, Maybelline"
-        },
-        {
-          "camera_id": "CAM_3",
-          "type": "entry_exit",
-          "description": "Main entrance/exit — glass door threshold"
-        },
-        {
-          "camera_id": "CAM_4",
-          "type": "stockroom",
-          "description": "Back room/stockroom — Purplle inventory storage, not customer-facing"
-        },
-        {
-          "camera_id": "CAM_5",
-          "type": "billing",
-          "description": "Cash counter — billing area"
-        }
+        { "camera_id": "CAM_1", "type": "floor",      "description": "Skincare shelf — Salm, TFS, Minimalist, Aqualogica, Foxtale, JC" },
+        { "camera_id": "CAM_2", "type": "floor",      "description": "Makeup + Bottom brands — Mars+Nybae, Mens, Loreal, Beauty" },
+        { "camera_id": "CAM_3", "type": "entry_exit", "description": "Main entrance/exit — glass door threshold" },
+        { "camera_id": "CAM_5", "type": "billing",    "description": "Cash counter — billing area" }
       ],
       "zones": [
-        {
-          "zone_id": "ENTRY",
-          "camera_id": "CAM_3",
-          "bbox": [0, 0.5, 1, 1.0],
-          "sku_zone": null,
-          "description": "Store entrance threshold"
-        },
-        {
-          "zone_id": "SKINCARE",
-          "camera_id": "CAM_1",
-          "bbox": [0, 0, 0.7, 1.0],
-          "sku_zone": "SKINCARE",
-          "description": "Skincare shelf — FarmStay, The Face Shop, Good Vibes, DermaCo, Minimalist, Aqualogica"
-        },
-        {
-          "zone_id": "PMU",
-          "camera_id": "CAM_1",
-          "bbox": [0.7, 0.3, 1.0, 1.0],
-          "sku_zone": "PMU",
-          "description": "Permanent Makeup Unit — vanity station right side"
-        },
-        {
-          "zone_id": "MAKEUP",
-          "camera_id": "CAM_2",
-          "bbox": [0.3, 0, 1.0, 1.0],
-          "sku_zone": "MAKEUP",
-          "description": "Makeup brands — Swiss Beauty, Lakme, Faces Canada, Maybelline"
-        },
-        {
-          "zone_id": "HAIRCARE",
-          "camera_id": "CAM_2",
-          "bbox": [0, 0, 0.3, 1.0],
-          "sku_zone": "HAIRCARE",
-          "description": "Hair care — Alps and accessories area"
-        },
-        {
-          "zone_id": "BILLING",
-          "camera_id": "CAM_5",
-          "bbox": [0, 0, 1.0, 1.0],
-          "sku_zone": null,
-          "description": "Cash counter — billing area"
-        }
+        { "zone_id": "ENTRY",       "camera_id": "CAM_3", "bbox": [0, 0.5, 1, 1.0],    "sku_zone": null },
+        { "zone_id": "SKINCARE",    "camera_id": "CAM_1", "bbox": [0, 0, 0.7, 0.6],    "sku_zone": "SKINCARE",   "description": "Salm, TFS, Minimalist, Aqualogica, Foxtale, JC" },
+        { "zone_id": "FRAGRANCE",   "camera_id": "CAM_1", "bbox": [0, 0.6, 0.4, 1.0],  "sku_zone": "FRAGRANCE",  "description": "Fragrance + Nail Unit" },
+        { "zone_id": "MAKEUP",      "camera_id": "CAM_2", "bbox": [0.3, 0, 1.0, 0.6],  "sku_zone": "MAKEUP",     "description": "Mars+Nybae, Mens, Loreal, Beauty" },
+        { "zone_id": "FOH",         "camera_id": "CAM_2", "bbox": [0, 0.3, 0.3, 0.8],  "sku_zone": null,         "description": "Front of House" },
+        { "zone_id": "ACCESSORIES", "camera_id": "CAM_2", "bbox": [0.8, 0.6, 1.0, 1.0],"sku_zone": "ACCESSORIES" },
+        { "zone_id": "BILLING",     "camera_id": "CAM_5", "bbox": [0, 0, 1.0, 1.0],    "sku_zone": null }
+      ]
+    },
+    {
+      "store_id": "store_1076",
+      "name": "Purplle_Store_2",
+      "city": "Bangalore",
+      "open_hours": { "open": "11:00", "close": "22:00" },
+      "cameras": [
+        { "camera_id": "ENTRY_1",     "type": "entry_exit", "description": "Left entrance — existing glazing left" },
+        { "camera_id": "ENTRY_2",     "type": "entry_exit", "description": "Right entrance — existing glazing right" },
+        { "camera_id": "ZONE",        "type": "floor",      "description": "Main floor — wall units, gondolas, makeup units" },
+        { "camera_id": "BILLING_AREA","type": "billing",    "description": "Cash counter — center top area" }
+      ],
+      "zones": [
+        { "zone_id": "ENTRY",       "camera_id": "ENTRY_1",      "bbox": [0, 0.5, 1, 1.0],     "sku_zone": null },
+        { "zone_id": "ENTRY_RIGHT", "camera_id": "ENTRY_2",      "bbox": [0, 0.5, 1, 1.0],     "sku_zone": null },
+        { "zone_id": "WALL_UNITS",  "camera_id": "ZONE",         "bbox": [0, 0, 0.3, 1.0],     "sku_zone": "SKINCARE",  "description": "Wall units left side" },
+        { "zone_id": "GONDOLA",     "camera_id": "ZONE",         "bbox": [0.2, 0.3, 0.6, 0.9], "sku_zone": "MAKEUP",    "description": "MK Gondola displays" },
+        { "zone_id": "MAKEUP_UNIT", "camera_id": "ZONE",         "bbox": [0.6, 0.3, 1.0, 0.9], "sku_zone": "MAKEUP",    "description": "Makeup units right side" },
+        { "zone_id": "FOH",         "camera_id": "ZONE",         "bbox": [0.2, 0.1, 0.8, 0.4], "sku_zone": null,        "description": "Front of House" },
+        { "zone_id": "BILLING",     "camera_id": "BILLING_AREA", "bbox": [0, 0, 1.0, 1.0],     "sku_zone": null }
       ]
     }
   ]
