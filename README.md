@@ -31,8 +31,8 @@ Click on ST1008
 | Service | URL | Description |
 |---|---|---|
 | API | http://localhost:8000 | FastAPI + SQLite |
-| Dashboard | http://localhost:8000 | Live metrics dashboard |
-| API Docs | http://localhost:8000/docs | Swagger UI |
+| Dashboard | https://store-intelligence-jsyb.onrender.com/ | Live metrics dashboard |
+| API Docs | https://store-intelligence-jsyb.onrender.com/docs | Swagger UI |
 
 ---
 
