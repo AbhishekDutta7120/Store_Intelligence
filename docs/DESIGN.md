@@ -61,6 +61,17 @@ The store layout (Brigade_Road_Store_layout.xlsx) defines a single-floor beauty 
 | STOCKROOM | CAM_4 | Back room — excluded from customer metrics |
 
 ---
+## Note on Event Schema
+
+The events.jsonl files follow the schema defined in the official problem 
+statement PDF. The sample_events.jsonl provided uses an alternative schema 
+with different field names (store_code vs store_id, id_token vs visitor_id, 
+event_timestamp vs timestamp). We followed the PDF schema as it is the 
+authoritative specification for this challenge.
+
+The generated event files are:
+- data/events_store1.jsonl — ST1008 Brigade Road, Bangalore (331 events)
+- data/events_store2.jsonl — store_1076 (events from second store)
 
 ## Stage 1: Detection Pipeline
 
